@@ -1,0 +1,311 @@
+:root{
+	--bg:#f2f4f7;
+	--paper:#ffffff;
+	--ink:#103b66;
+	--muted:#436a9a;
+	--blue-1:#1a73e8;
+	--blue-2:#2d8cf0;
+	--blue-3:#0a4ea3;
+	--blue-4:#5bb1ff;
+	--gutter:24px;
+	--radius:10px;
+	--panel-min:260px;
+	--shadow:0 6px 28px rgba(16,59,102,.12);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+	margin:0;
+	font-family:Montserrat,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif;
+	background:var(--bg);
+	color:var(--ink);
+}
+
+.brochure{
+	max-width:1400px;
+	margin:40px auto;
+	padding:var(--gutter);
+	background:linear-gradient(180deg,#fff, #fafcff);
+	border-radius:var(--radius);
+	box-shadow:var(--shadow);
+	display:grid;
+	grid-template-columns:1fr 1fr 1fr;
+	gap:0;
+}
+
+.panel{
+	min-height:640px;
+	padding:48px 40px;
+	background:var(--paper);
+	position:relative;
+}
+
+.panel + .panel{
+	border-left:1px solid rgba(16,59,102,.08);
+}
+
+.panel-header .heading-xl{
+	margin:0 0 20px 0;
+	line-height:1.05;
+	font-size:36px;
+	font-weight:800;
+	text-transform:uppercase;
+	letter-spacing:.5px;
+	color:var(--ink);
+}
+
+.list{
+	margin:0 0 20px 20px;
+	padding:0;
+	font-size:16px;
+	line-height:1.6;
+}
+.list li{margin:4px 0 0 0}
+
+.note{
+	margin-top:auto;
+	max-width:28ch;
+	color:var(--muted);
+	font-size:14px;
+}
+
+.panel-center{
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	background:linear-gradient(180deg,#f7fbff 0%, #eef6ff 100%);
+	overflow:hidden;
+}
+
+.composition{
+	position:relative;
+	width:min(1400px, 100%);
+	aspect-ratio:1/1;
+	transform:rotate(72deg);
+}
+
+.center-title{
+	position:relative;
+	z-index:3;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	height:100%;
+	transform:rotate(18deg);
+}
+.center-title .vertical{
+	display:inline-block;
+	font-weight:800;
+	font-size:34px;
+	letter-spacing:2px;
+	color:#f7fbff;
+	text-transform:uppercase;
+	writing-mode:vertical-rl;
+	transform:rotate(180deg);
+	text-shadow:0 10px 26px rgba(0,0,0,.28);
+}
+
+/* Make center text horizontal when using .horizontal modifier */
+.center-title .vertical.horizontal{
+	writing-mode:horizontal-tb;
+	transform:none;
+}
+
+.geom-bg{
+	position:absolute;
+	inset:0;
+	z-index:1;
+}
+
+
+.geom-bg .shard,
+.geom-bg .core{position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); will-change:transform}
+
+.geom-bg .shard:nth-child(1){
+	width:82%; height:82%;
+	background:var(--blue-4);
+	clip-path:polygon(10% 15%, 88% 35%, 78% 92%, 20% 78%);
+	transform:translate(-52%,-48%) rotate(14deg);
+	filter:drop-shadow(0 18px 30px rgba(37,118,208,.35));
+	opacity:.95;
+}
+.geom-bg .shard:nth-child(2){
+	width:72%; height:72%;
+	background:var(--blue-2);
+	clip-path:polygon(18% 10%, 84% 6%, 92% 72%, 8% 88%);
+	transform:translate(-48%,-52%) rotate(-12deg);
+	filter:drop-shadow(0 18px 30px rgba(16,59,102,.25));
+}
+.geom-bg .shard:nth-child(3){
+	width:84%; height:84%;
+	background:var(--blue-1);
+	clip-path:polygon(20% 8%, 76% 0%, 100% 44%, 62% 98%, 8% 72%);
+	transform:translate(-50%,-50%) rotate(28deg);
+	opacity:.85;
+}
+.geom-bg .shard:nth-child(4){
+	width:80%; height:80%;
+	background:var(--blue-3);
+	clip-path:polygon(12% 40%, 66% 6%, 96% 42%, 78% 96%, 22% 86%);
+	transform:translate(-50%,-50%) rotate(-22deg);
+	opacity:.9;
+}
+.geom-bg .shard:nth-child(5){
+	width:92%; height:92%;
+	background:linear-gradient(135deg, rgba(255,255,255,.16), rgba(0,0,0,.12));
+	mix-blend-mode:overlay;
+	clip-path:polygon(12% 18%, 72% 6%, 96% 36%, 86% 88%, 20% 82%);
+	transform:translate(-50%,-50%) rotate(8deg);
+	opacity:.55;
+}
+
+.geom-bg .core{
+	width:72%; height:72%;
+	background:linear-gradient(135deg,var(--blue-2), var(--blue-3) 60%);
+	clip-path:polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+	transform:translate(-50%,-50%) rotate(20deg);
+	filter:drop-shadow(0 24px 44px rgba(10,78,163,.45));
+	border-radius:8px;
+}
+
+@media print{
+	body{background:#fff}
+	.brochure{
+		margin:0;
+		max-width:none;
+		padding:0;
+		box-shadow:none;
+	}
+	.panel{min-height:0;padding:28mm 18mm}
+	.center-title .vertical{color:#fff}
+}
+
+@media (max-width:980px){
+	.brochure{grid-template-columns:1fr; gap:1px}
+	.panel{min-height:420px}
+	.panel + .panel{border-left:none;border-top:1px solid rgba(16,59,102,.08)}
+	.center-title .vertical{font-size:30px}
+}
+
+/* ===== ABSURD RAINBOW THEME OVERRIDES (intentionally over-the-top) ===== */
+:root{
+	--bg:#fff200;
+	--paper:#ffffff;
+	--ink:#111111;
+	--muted:#ff00e6;
+	--blue-1:#ff0066;
+	--blue-2:#33ff00;
+	--blue-3:#00ccff;
+	--blue-4:#7a00ff;
+	--shadow:0 18px 48px rgba(0,0,0,.35);
+}
+
+body{
+	background:linear-gradient(90deg, #ff0066, #ffcc00, #33ff00, #00ccff, #7a00ff, #ff0066) 0 0/200% 100% fixed;
+	animation:rainbow-scroll 6s linear infinite;
+}
+
+.brochure{
+	max-width:1400px;
+	background:
+		radial-gradient(circle at 10% 20%, #ffffff 0 6px, transparent 7px) 0 0/80px 80px,
+		radial-gradient(circle at 60% 70%, #ffffff 0 6px, transparent 7px) 40px 40px/80px 80px,
+		repeating-conic-gradient(from 0deg, #ff0088 0 10deg, #ffea00 10deg 20deg, #00ffcc 20deg 30deg, #6a00ff 30deg 40deg);
+	border-radius:22px;
+	box-shadow:var(--shadow);
+}
+
+.panel{
+	background:linear-gradient(145deg, #ffffff, #fff7f7);
+	border:6px solid transparent;
+	border-image:conic-gradient(#ff0066, #ffcc00, #33ff00, #00ccff, #7a00ff, #ff0066) 1;
+	box-shadow:0 20px 20px rgba(0,0,0,.2);
+}
+
+.panel-header .heading-xl{
+	font-size:40px;
+	letter-spacing:2px;
+	background:linear-gradient(180deg, #ff0066, #ffcc00, #33ff00, #00ccff, #7a00ff);
+	-webkit-background-clip:text;
+	background-clip:text;
+	color:transparent;
+	text-shadow:0 3px 0 #fff, 0 0 20px rgba(255,255,255,.8);
+}
+
+.rainbow-text{
+	background:conic-gradient(from 0deg, #ff0066, #ffcc00, #33ff00, #00ccff, #7a00ff, #ff0066);
+	-webkit-background-clip:text;
+	background-clip:text;
+	-webkit-text-fill-color:transparent;
+	color:transparent;
+	/* make it readable: solid stroke + glow */
+	-webkit-text-stroke:2px rgba(0,0,0,.9);
+	text-shadow:
+		0 1px 0 #fff,
+		0 0 10px rgba(255,255,255,.6),
+		0 0 20px rgba(255,255,255,.4);
+	animation:spinText 6s linear infinite;
+}
+
+.list{font-size:18px; line-height:1.8; color:#000}
+.list li::marker{content:"🎉 "}
+.note{
+	color:#000;
+	font-size:16px;
+	background:linear-gradient(90deg,#ffff00,#ff66ff);
+	padding:8px 10px;
+	border-radius:12px;
+	box-shadow:inset 0 0 0 3px #000;
+}
+
+.panel-center{
+	background:repeating-linear-gradient(45deg, #ff0066 0 20px, #ffcc00 20px 40px, #33ff00 40px 60px, #00ccff 60px 80px, #7a00ff 80px 100px);
+	animation:hue-shift 8s linear infinite;
+}
+
+.composition{
+	width:min(1200px, 100%);
+	transform:rotate(18deg);
+	animation:wiggle 5s ease-in-out infinite;
+}
+.center-title{transform:rotate(-18deg)}
+.center-title .vertical{
+	color:#ffffff;
+	text-shadow:0 0 8px #ff00ff, 0 0 18px #00ffff, 0 0 26px #ffff00;
+	background:conic-gradient(from 0deg, #ff0066, #ffcc00, #33ff00, #00ccff, #7a00ff, #ff0066);
+	-webkit-background-clip:text;
+	background-clip:text;
+	color:transparent;
+	animation:spinText 6s linear infinite;
+}
+
+.geom-bg .shard:nth-child(1){background:#ff0066; mix-blend-mode:screen; animation:floaty 7s ease-in-out infinite}
+.geom-bg .shard:nth-child(2){background:#ffcc00; mix-blend-mode:screen; animation:floaty 6s ease-in-out -1s infinite}
+.geom-bg .shard:nth-child(3){background:#33ff00; mix-blend-mode:screen; animation:floaty 8s ease-in-out -2s infinite; opacity:.9}
+.geom-bg .shard:nth-child(4){background:#00ccff; mix-blend-mode:screen; animation:floaty 9s ease-in-out -3s infinite}
+.geom-bg .shard:nth-child(5){background:linear-gradient(135deg, rgba(255,255,255,.6), rgba(0,0,0,.12)); opacity:.75; animation:floaty 10s ease-in-out -4s infinite}
+.geom-bg .core{
+	background:linear-gradient(135deg,#ff00ff, #00ffff 60%);
+	animation:pulse 2s ease-in-out infinite;
+}
+
+@keyframes rainbow-scroll{to{background-position:200% 0}}
+@keyframes hue-shift{from{filter:hue-rotate(0)} to{filter:hue-rotate(360deg)}}
+@keyframes wiggle{
+	0%,100%{transform:rotate(18deg) scale(1)}
+	25%{transform:rotate(22deg) scale(1.03)}
+	50%{transform:rotate(16deg) scale(1.06)}
+	75%{transform:rotate(20deg) scale(1.03)}
+}
+@keyframes spinText{to{filter:hue-rotate(360deg)}}
+@keyframes floaty{
+	0%,100%{transform:translate(-50%,-50%) rotate(0deg)}
+	50%{transform:translate(-50%,-48%) rotate(6deg)}
+}
+@keyframes pulse{
+	0%,100%{transform:translate(-50%,-50%) rotate(20deg) scale(1)}
+	50%{transform:translate(-50%,-50%) rotate(20deg) scale(1.08)}
+}
+
+
