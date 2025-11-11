@@ -106,7 +106,6 @@ body{
 	text-shadow:0 10px 26px rgba(0,0,0,.28);
 }
 
-/* Make center text horizontal when using .horizontal modifier */
 .center-title .vertical.horizontal{
 	writing-mode:horizontal-tb;
 	transform:none;
@@ -181,6 +180,15 @@ body{
 	.center-title .vertical{color:#fff}
 }
 
+html{ zoom:1.25 }
+@supports not (zoom:1){
+	html{
+		transform:scale(1.25);
+		transform-origin:top left;
+	}
+	body{ width:calc(100% / 1.25) }
+}
+
 @media (max-width:980px){
 	.brochure{grid-template-columns:1fr; gap:1px}
 	.panel{min-height:420px}
@@ -188,7 +196,6 @@ body{
 	.center-title .vertical{font-size:30px}
 }
 
-/* ===== ABSURD RAINBOW THEME OVERRIDES (intentionally over-the-top) ===== */
 :root{
 	--bg:#fff200;
 	--paper:#ffffff;
@@ -239,7 +246,6 @@ body{
 	background-clip:text;
 	-webkit-text-fill-color:transparent;
 	color:transparent;
-	/* make it readable: solid stroke + glow */
 	-webkit-text-stroke:2px rgba(0,0,0,.9);
 	text-shadow:
 		0 1px 0 #fff,
